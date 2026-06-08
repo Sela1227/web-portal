@@ -4,8 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Sela 系統工具</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- SELA Favicon Set -->
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <meta name="theme-color" content="#F36825">
+
   <style>
     :root {
       --bg-grad:      linear-gradient(160deg, #EFF4FA 0%, #E4EDF6 100%);
@@ -20,7 +27,7 @@
       --border:       #DDE5EF;
       --border-inner: #EEF3F9;
       --bg-muted:     #F0F5FB;
-      --font:         'Sora', 'Noto Sans TC', sans-serif;
+      --font:         system-ui, -apple-system, "Microsoft JhengHei", "PingFang TC", "Segoe UI", sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -141,6 +148,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       flex: 1;
+      align-content: start;
     }
 
     .tool-grid > * {
@@ -169,9 +177,7 @@
       min-height: 128px;
     }
 
-    .tool-card:active:not(.disabled) {
-      background: #EEF6FF;
-    }
+    .tool-card:active:not(.disabled) { background: #EEF6FF; }
 
     .tool-icon-wrap {
       width: 48px;
@@ -182,7 +188,7 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      transition: transform 0.18s, background 0.18s;
+      transition: transform 0.18s;
     }
 
     .tool-icon-wrap svg {
@@ -220,7 +226,7 @@
       letter-spacing: 0.05em;
     }
 
-    /* ── Lock area — fills remaining card space ── */
+    /* ── Lock area ── */
     .lock-area {
       flex: 1;
       display: flex;
@@ -271,12 +277,9 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .unlock-btn:active {
-      background: var(--primary-dark);
-      transform: scale(0.97);
-    }
+    .unlock-btn:active { background: var(--primary-dark); transform: scale(0.97); }
 
-    /* ── Modal overlay ── */
+    /* ── Modal ── */
     .overlay {
       position: fixed;
       inset: 0;
@@ -286,14 +289,9 @@
       align-items: flex-end;
     }
 
-    .overlay.open {
-      display: flex;
-      animation: fadeOv 0.2s ease;
-    }
+    .overlay.open { display: flex; animation: fadeOv 0.2s ease; }
 
-    @keyframes fadeOv {
-      from { opacity: 0; } to { opacity: 1; }
-    }
+    @keyframes fadeOv { from { opacity: 0; } to { opacity: 1; } }
 
     .sheet {
       width: 100%;
@@ -306,9 +304,7 @@
       animation: slideUp 0.3s cubic-bezier(0.32,0.72,0,1);
     }
 
-    @keyframes slideUp {
-      from { transform: translateY(100%); } to { transform: translateY(0); }
-    }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
     .sheet-handle {
       width: 36px;
@@ -318,19 +314,9 @@
       margin: 6px auto;
     }
 
-    .sheet-title {
-      font-size: 16px;
-      font-weight: 500;
-      text-align: center;
-      letter-spacing: 0.04em;
-    }
+    .sheet-title { font-size: 16px; font-weight: 500; text-align: center; letter-spacing: 0.04em; }
 
-    .sheet-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-      text-align: center;
-      margin-top: -8px;
-    }
+    .sheet-sub { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: -8px; }
 
     .pw-input {
       width: 100%;
@@ -348,10 +334,7 @@
       -webkit-appearance: none;
     }
 
-    .pw-input:focus {
-      border-color: var(--primary-mid);
-      box-shadow: 0 0 0 3px rgba(3,105,161,0.12);
-    }
+    .pw-input:focus { border-color: var(--primary-mid); box-shadow: 0 0 0 3px rgba(3,105,161,0.12); }
 
     .pw-input.shake {
       border-color: #EF4444;
@@ -367,13 +350,7 @@
       80%     { transform: translateX(5px); }
     }
 
-    .pw-error {
-      font-size: 12px;
-      color: #EF4444;
-      text-align: center;
-      min-height: 16px;
-      margin-top: -6px;
-    }
+    .pw-error { font-size: 12px; color: #EF4444; text-align: center; min-height: 16px; margin-top: -6px; }
 
     .confirm-btn {
       width: 100%;
@@ -392,13 +369,7 @@
 
     .confirm-btn:active { background: var(--primary-dark); }
 
-    .cancel-link {
-      text-align: center;
-      font-size: 13px;
-      color: var(--text-muted);
-      cursor: pointer;
-      padding: 2px 0;
-    }
+    .cancel-link { text-align: center; font-size: 13px; color: var(--text-muted); cursor: pointer; padding: 2px 0; }
 
     /* ── Footer ── */
     footer {
@@ -417,7 +388,7 @@
 
       main {
         flex-direction: row;
-        align-items: stretch;   /* ← all columns same height */
+        align-items: flex-start;
         padding: 28px 24px 44px;
         gap: 12px;
       }
@@ -459,119 +430,12 @@
 </header>
 
 <main>
-
-  <!-- 放腫科 -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-icon">
-        <svg viewBox="0 0 24 24"><path d="M4.9 4.9A9.95 9.95 0 0 0 2 12c0 2.76 1.12 5.26 2.93 7.07"/><path d="M7.76 7.76A5.98 5.98 0 0 0 6 12c0 1.65.67 3.15 1.76 4.24"/><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76A5.98 5.98 0 0 1 18 12c0 1.65-.67 3.15-1.76 4.24"/><path d="M19.07 4.93A9.95 9.95 0 0 1 22 12c0 2.76-1.12 5.26-2.93 7.07"/></svg>
-      </div>
-      <span class="section-title">放腫科</span>
-    </div>
-    <div class="tool-grid">
-      <a href="https://sela1227.github.io/RTO-QCC/" class="tool-card" target="_blank" rel="noopener">
-        <div class="tool-icon-wrap">
-          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <span class="tool-name">QCC 個人體重監測</span>
-      </a>
-      <div class="tool-card disabled">
-        <div class="tool-icon-wrap">
-          <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
-        </div>
-        <span class="tool-name">QA 工具</span>
-        <span class="dev-badge">開發中</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 癌症中心 -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-icon">
-        <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4 .5-2H20.78"/></svg>
-      </div>
-      <span class="section-title">癌症中心</span>
-    </div>
-    <div class="tool-grid">
-      <a href="https://sela1227.github.io/Patient-follow/" class="tool-card" target="_blank" rel="noopener">
-        <div class="tool-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <span class="tool-name">個管病患追蹤系統</span>
-      </a>
-      <a href="https://sela1227.github.io/cancer-resource-center/" class="tool-card" target="_blank" rel="noopener">
-        <div class="tool-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        </div>
-        <span class="tool-name">癌症資源中心系統</span>
-      </a>
-      <a href="https://sela1227.github.io/Lung-ca-nevigation/" class="tool-card" target="_blank" rel="noopener">
-        <div class="tool-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
-        </div>
-        <span class="tool-name">肺癌臨床路徑</span>
-      </a>
-      <a href="https://sela1227.github.io/MDT/" class="tool-card" target="_blank" rel="noopener">
-        <div class="tool-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-        </div>
-        <span class="tool-name">個管多專科會議系統</span>
-      </a>
-      <a href="https://sela1227.github.io/Chart/" class="tool-card" target="_blank" rel="noopener">
-        <div class="tool-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <span class="tool-name">病歷整理輔助系統</span>
-      </a>
-      <a href="https://web-production-0b5be.up.railway.app/" class="tool-card" target="_blank" rel="noopener">
-        <div class="tool-icon-wrap">
-          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
-        </div>
-        <span class="tool-name">癌症醫院專案系統</span>
-      </a>
-      <a href="https://web-production-a2c46.up.railway.app/" class="tool-card" target="_blank" rel="noopener">
-        <div class="tool-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        </div>
-        <span class="tool-name">病歷互審系統</span>
-      </a>
-      <a href="https://sela1227.github.io/Cancer-Drug/" class="tool-card" target="_blank" rel="noopener">
-        <div class="tool-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M9 3h6l1 7H8L9 3z"/><path d="M8 10v4a4 4 0 0 0 8 0v-4"/><path d="M7 21h10"/></svg>
-        </div>
-        <span class="tool-name">健保癌症藥物速查系統</span>
-      </a>
-      <a href="https://sela1227.github.io/CCM-manual/" class="tool-card" target="_blank" rel="noopener">
-        <div class="tool-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        </div>
-        <span class="tool-name">個管師訓練系統</span>
-      </a>
-    </div>
-  </section>
-
-  <!-- 個人 -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-icon">
-        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      </div>
-      <span class="section-title">個人</span>
-    </div>
-    <div id="lock-area" class="lock-area">
-      <div class="lock-circle">
-        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      </div>
-      <span class="lock-label">此區域需要驗證</span>
-      <button class="unlock-btn" onclick="openModal()">解鎖</button>
-    </div>
-    <div id="personal-grid" class="tool-grid" style="display:none;"></div>
-  </section>
-
+  <section class="section" id="section-rto"></section>
+  <section class="section" id="section-cc"></section>
+  <section class="section" id="section-personal"></section>
 </main>
 
-<footer>Sela &copy; 2025</footer>
+<footer>Made by SELA · V1.4.0</footer>
 
 <!-- Password modal -->
 <div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
@@ -596,79 +460,164 @@
 </div>
 
 <script>
-  const ENCRYPTED = 'Tjoq39BD+htI8jsdzzVdg1MjFhNs+xmd/iaoQbiv5WzCXc3L6u1A6v0zYg4FY4NisaKPklFrO5ohmSEROApn/4CqoRcn0jtMTGEB6zKujrWzTRrAkr1+Eo/xyNG7tvJOd6lGSNUHtkxUYC86rbSz7ZYc9KmVbIqMCNJAAgBp5wssTd1cuM7HcigYH8f4hI2ehoc/mk36wjD6YY8Gkw5SSiH2heU2kAXX3dpOEONjfmlnKvJt05dNi6BLNIP0Rg20zML6LJVKK7Thz7rkZhuVy8/cUXxRm1brmxO9d2xVhakEOsZywc0SB5jzf3+k4LtmdRitSzbL/juBNqBdmEOV2XeZQDOIEqUs663I6ck442I6vkwlq9gjRvih++ulyOXX9aZKJy0AAsMuC6GT+RBpr0sU/fbcLC09/noP6Df/D+vc8x8cmSJX2YFSk16nHIOCEbAdNB297K7QNJqu63fAXVBMPHqG6gnwg8zHLv21EuBvEAdq0pbJgT2GEjxy+3TD+uDz3F0YLdRGWB7b5N39EedTqljKZb5T6Anv+GUPz243m5nfRrzJTGmdNT3MCjh4mVWNlc8AHK9bYOjighEeFdLKUPJ7FOnuqi8BgBQq/16uDBKoSRIQQgpQtNEhBUmD+mkZgTFAPKsrsZ5OM27aevAmlvMuJcK/s7zsAP8St+2/W69KYcBNMe/H25Fj9Fw=';
+// ════════════════════════════════════════════
+//  調整順序：移動陣列項目即可，上面 = 左/上
+// ════════════════════════════════════════════
 
-  const ICONS = {
-    wrench:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
-    book:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
-    map:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>`,
-    gamepad: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4"/><path d="M8 10v4"/><circle cx="16" cy="12" r="1" fill="currentColor"/><circle cx="18" cy="10" r="1" fill="currentColor"/></svg>`,
-    cards:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="14" height="18" rx="2"/><path d="M6 2h14a2 2 0 0 1 2 2v14"/><line x1="6" y1="10" x2="12" y2="10"/><line x1="6" y1="14" x2="10" y2="14"/></svg>`
-  };
+const TOOLS_RTO = [
+  { name: 'QCC 個人體重監測', url: 'https://sela1227.github.io/RTO-QCC/', icon: 'activity' },
+  { name: 'QA 工具',          url: '',                                      icon: 'clipboard', disabled: true },
+];
 
-  function openModal() {
-    document.getElementById('overlay').classList.add('open');
-    setTimeout(() => document.getElementById('pw').focus(), 300);
+const TOOLS_CC = [
+  { name: '個管病患追蹤系統',     url: 'https://sela1227.github.io/Patient-follow/' ,          icon: 'users' },
+  { name: '癌症資源中心系統',     url: 'https://sela1227.github.io/cancer-resource-center/',    icon: 'book' },
+  { name: '肺癌臨床路徑',         url: 'https://sela1227.github.io/Lung-ca-nevigation/',        icon: 'grid' },
+  { name: '個管多專科會議系統',   url: 'https://sela1227.github.io/MDT/',                       icon: 'users-plus' },
+  { name: '病歷整理輔助系統',     url: 'https://sela1227.github.io/Chart/',                     icon: 'file-text' },
+  { name: '癌症醫院專案系統',     url: 'https://web-production-0b5be.up.railway.app/',          icon: 'briefcase' },
+  { name: '病歷互審系統',         url: 'https://web-production-a2c46.up.railway.app/',          icon: 'file-edit' },
+  { name: '健保癌症藥物速查系統', url: 'https://sela1227.github.io/Cancer-Drug/',               icon: 'pill' },
+  { name: '個管師訓練系統',       url: 'https://sela1227.github.io/CCM-manual/',                icon: 'graduation' },
+];
+
+// ════════════════════════════════════════════
+//  個人工具 — AES-256-GCM 加密（密碼保護）
+// ════════════════════════════════════════════
+
+const ENCRYPTED = 'wdmnAh38rm9jYzrEbdenFG/s8wQLcBOoc5Epd/pCYIe03L2VKbVl+CyFOqIxcagqSMf2OlfjKl9KwCsnSKaNiJe+oFLxZcZRbbVDzz+3RYFXjrKH131jxjVHt0XSqxQcJyxUaF4cXrSWElUyvRk5xIVudFCDXb1mF1i4ywYfPahLnATqMzMmyudRZ/9TI4n9uQsWhx9QfxmFbsnS7mJHMm1XRG1B28080ylw+GzkFU220Zpn75w+QKmui3Bfxsv1U2zIyb1FnxwpYoAw5xdoq+wkuhVW6cvxD6C5qeRmFRVa0Oi2u4xetMWZsQUk5lFTImwhNW9jGTm6ilAJcwqsMvbjIgQkZiR1ePxpwU7Ucj0H7yRPFUsDuoPJiOdw9kKAH+ssvNwazh7hwurV5PspG+fUX5U3AqIs9nhbu9GY8+WWcYBkKjzOV/M145eBQNMj2Fbzf+8EYA5MK7niyCwIQiOAxRwiFvpMUAh7NikWGWNqkubAYRCeaLGcnHSQEGBvFjdQwNikyY1V0EsH4h5/fBZiRy1df4eP+P0K/2k9zw5UBLKbBifl2qNB+vSRNrPQhcPlxWLtuUw+ePRG//i6q6oo3nJQf9ROw5Q7AN6iSR0cNFoOQPgZFd7wA5R3vhvsHVvYENE4/kdxCC6Ojk7qOAsKa3WXrnrn5nAu7k/dRYB1pcH5kZZDim2wlPk2iZSDlHqEndGn4x3MAcywa9lcdtX772s3Y7tbWmNU0s4w7zHrH25s614t24eq3GbiCi+SqRSfCb2era0HwqKAGGC2c0VsNUIy5/sL4PbBtQwi2dPmvb654hPXu1H7';
+
+// ════════════════════════════════════════════
+//  圖示庫
+// ════════════════════════════════════════════
+
+const ICONS = {
+  activity:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+  clipboard:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>`,
+  users:       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  book:        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+  grid:        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>`,
+  'users-plus':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>`,
+  'file-text': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+  briefcase:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>`,
+  'file-edit': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`,
+  pill:        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3h6l1 7H8L9 3z"/><path d="M8 10v4a4 4 0 0 0 8 0v-4"/><path d="M7 21h10"/></svg>`,
+  graduation:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
+  wrench:      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
+  'book-read': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
+  map:         `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>`,
+  gamepad:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4"/><path d="M8 10v4"/><circle cx="16" cy="12" r="1" fill="currentColor"/><circle cx="18" cy="10" r="1" fill="currentColor"/></svg>`,
+  cards:       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="14" height="18" rx="2"/><path d="M6 2h14a2 2 0 0 1 2 2v14"/><line x1="6" y1="10" x2="12" y2="10"/><line x1="6" y1="14" x2="10" y2="14"/></svg>`,
+  message:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+  lock:        `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+  radio:       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.9 4.9A9.95 9.95 0 0 0 2 12c0 2.76 1.12 5.26 2.93 7.07"/><path d="M7.76 7.76A5.98 5.98 0 0 0 6 12c0 1.65.67 3.15 1.76 4.24"/><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76A5.98 5.98 0 0 1 18 12c0 1.65-.67 3.15-1.76 4.24"/><path d="M19.07 4.93A9.95 9.95 0 0 1 22 12c0 2.76-1.12 5.26-2.93 7.07"/></svg>`,
+  heart:       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4 .5-2H20.78"/></svg>`,
+};
+
+// ════════════════════════════════════════════
+//  渲染函式
+// ════════════════════════════════════════════
+
+function cardHTML(tool) {
+  const icon = ICONS[tool.icon] || ICONS.wrench;
+  const disabled = tool.disabled ? ' disabled' : '';
+  const tag = tool.url && !tool.disabled ? 'a' : 'div';
+  const href = tool.url && !tool.disabled ? `href="${tool.url}" target="_blank" rel="noopener"` : '';
+  const badge = tool.disabled ? '<span class="dev-badge">開發中</span>' : '';
+  return `<${tag} ${href} class="tool-card${disabled}">
+    <div class="tool-icon-wrap">${icon}</div>
+    <span class="tool-name">${tool.name}</span>
+    ${badge}
+  </${tag}>`;
+}
+
+function renderSection(id, title, iconKey, tools) {
+  const el = document.getElementById(id);
+  el.innerHTML = `
+    <div class="section-header">
+      <div class="section-icon">${ICONS[iconKey]}</div>
+      <span class="section-title">${title}</span>
+    </div>
+    <div class="tool-grid">${tools.map(cardHTML).join('')}</div>`;
+}
+
+function renderPersonal(tools) {
+  const grid = document.getElementById('personal-grid');
+  grid.innerHTML = tools.map(cardHTML).join('');
+  document.getElementById('lock-area').style.display = 'none';
+  grid.style.display = 'grid';
+}
+
+// ── 初始化 ──
+renderSection('section-rto',      '放腫科',  'radio', TOOLS_RTO);
+renderSection('section-cc',       '癌症中心','heart', TOOLS_CC);
+
+// 個人欄：靜態 HTML（鎖頭）
+document.getElementById('section-personal').innerHTML = `
+  <div class="section-header">
+    <div class="section-icon">${ICONS.lock}</div>
+    <span class="section-title">個人</span>
+  </div>
+  <div id="lock-area" class="lock-area">
+    <div class="lock-circle">${ICONS.lock}</div>
+    <span class="lock-label">此區域需要驗證</span>
+    <button class="unlock-btn" onclick="openModal()">解鎖</button>
+  </div>
+  <div id="personal-grid" class="tool-grid" style="display:none;"></div>`;
+
+// ════════════════════════════════════════════
+//  密碼 & 解密
+// ════════════════════════════════════════════
+
+function openModal() {
+  document.getElementById('overlay').classList.add('open');
+  setTimeout(() => document.getElementById('pw').focus(), 300);
+}
+
+function closeModal() {
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('pw').value = '';
+  document.getElementById('pw-error').textContent = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('overlay')) closeModal();
+}
+
+async function doConfirm() {
+  const input = document.getElementById('pw');
+  const err   = document.getElementById('pw-error');
+  const pw    = input.value;
+  if (!pw) return;
+  try {
+    const tools = await decrypt(pw, ENCRYPTED);
+    closeModal();
+    renderPersonal(tools);
+  } catch {
+    err.textContent = '密碼錯誤，請再試一次';
+    input.classList.add('shake');
+    input.addEventListener('animationend', () => input.classList.remove('shake'), { once: true });
+    input.value = '';
+    setTimeout(() => input.focus(), 50);
   }
+}
 
-  function closeModal() {
-    document.getElementById('overlay').classList.remove('open');
-    document.getElementById('pw').value = '';
-    document.getElementById('pw-error').textContent = '';
-  }
-
-  function handleOverlayClick(e) {
-    if (e.target === document.getElementById('overlay')) closeModal();
-  }
-
-  async function doConfirm() {
-    const input = document.getElementById('pw');
-    const err   = document.getElementById('pw-error');
-    const pw    = input.value;
-    if (!pw) return;
-    try {
-      const tools = await decrypt(pw, ENCRYPTED);
-      closeModal();
-      renderPersonal(tools);
-    } catch {
-      err.textContent = '密碼錯誤，請再試一次';
-      input.classList.add('shake');
-      input.addEventListener('animationend', () => input.classList.remove('shake'), { once: true });
-      input.value = '';
-      setTimeout(() => input.focus(), 50);
-    }
-  }
-
-  async function decrypt(password, b64) {
-    const buf  = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
-    const salt = buf.slice(0, 16);
-    const iv   = buf.slice(16, 28);
-    const body = buf.slice(28);
-    const keyMat = await crypto.subtle.importKey(
-      'raw', new TextEncoder().encode(password),
-      { name: 'PBKDF2' }, false, ['deriveKey']
-    );
-    const key = await crypto.subtle.deriveKey(
-      { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
-      keyMat, { name: 'AES-GCM', length: 256 }, false, ['decrypt']
-    );
-    const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, body);
-    return JSON.parse(new TextDecoder().decode(plain));
-  }
-
-  function renderPersonal(tools) {
-    const grid = document.getElementById('personal-grid');
-    grid.innerHTML = tools.map(t => `
-      <a href="${t.url}" class="tool-card" target="_blank" rel="noopener">
-        <div class="tool-icon-wrap" style="color:var(--primary)">
-          ${ICONS[t.icon] || ICONS.wrench}
-        </div>
-        <span class="tool-name">${t.name}</span>
-      </a>
-    `).join('');
-    document.getElementById('lock-area').style.display = 'none';
-    grid.style.display = 'grid';
-  }
+async function decrypt(password, b64) {
+  const buf  = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+  const salt = buf.slice(0, 16);
+  const iv   = buf.slice(16, 28);
+  const body = buf.slice(28);
+  const keyMat = await crypto.subtle.importKey(
+    'raw', new TextEncoder().encode(password),
+    { name: 'PBKDF2' }, false, ['deriveKey']
+  );
+  const key = await crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
+    keyMat, { name: 'AES-GCM', length: 256 }, false, ['decrypt']
+  );
+  const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, body);
+  return JSON.parse(new TextDecoder().decode(plain));
+}
 </script>
 </body>
 </html>
